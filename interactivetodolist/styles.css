@@ -35,4 +35,55 @@ form{
 }
 .whatneeds{
     flex : 1;
+    padding : 8px;
+    border: 1px solid #ccc;
+    border-radius : 4px;
+}
+form button{
+  background-color : green;
+  color : white;
+  border-radius : 4px;
+  cursor : pointer;
+  padding : 8px 12px;
+}
+#taskList{
+  list-style: none;
+  margin-bottom : 15px;
+}
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.filters{
+ display : flex;
+ gap : 12px;
+ margin-bottom : 10px;
+}
+.filters button{
+ flex : 1;
+ margin : 0 3px;
+ padding : 6px 0;
+ border : 1px solid #ccc;
+ background: #fafafa;
+ border-radius : 4px;
+ cursor: pointer;
+ font-size: 13px;
+}
+footer{
+  display : flex;
+  justify-content : center;
+  align-items: center;
+}
+#clearCompleted{
+  background : #e53935;
+  color : white;
+  border : none;
+  padding : 6px 12px;
+  border-radius : 4px;
+  cursor : pointer;
+  font-size : 13px;
 }
