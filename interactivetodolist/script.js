@@ -1,45 +1,94 @@
+// 
+// 1️⃣ Select DOM elements
+// 
 let inputElement = document.querySelector(".whatneeds");
-//console.log(inputElement);
-
-
 let formElements = document.getElementsByTagName('form');
-//console.log(formElements[1]);
 let inputText = formElements[0].getElementsByTagName('input');
 let addBtn = formElements[0].getElementsByTagName('button');
+let filterB = document.querySelectorAll(".filters button");
+let btnCc = document.getElementById("clearCompleted");
+let taskList = document.getElementById("taskList");
 
-//console.log(inputText[0]);
-//console.log(addBtn[0]);
+// 
+// 2️⃣ Add task
 
-formElements[0].addEventListener("submit",function(e){
+formElements[0].addEventListener("submit", function(e){
     e.preventDefault();
-    console.log(e);
-// let inputText = formElements[0].getElementsByTagName('input');
-console.log(inputText[0].value);
 
-let li = document.createElement('li');
-//let tE = document.createTextNode(inputText[0].value);
-let spanE = document.createElement('span');
-spanE.innerText = inputText[0].value;
+    // ✅ Validation: ignore empty input
+    if (!inputText[0].value.trim()) return;
 
-li.appendChild(spanE);
-document.getElementById("taskList").appendChild(li);
+    console.log(inputText[0].value);
+
+    // Create li and span
+    let li = document.createElement('li');
+    let spanE = document.createElement('span');
+    spanE.innerText = inputText[0].value;
+
+    li.appendChild(spanE);
+    taskList.appendChild(li);
+
+    // Create tick button
+    let btnTick = document.createElement('button');
+    btnTick.innerText = "✔";
+    li.appendChild(btnTick);
+
+    // Create remove button
+    let btnRemove = document.createElement('button');
+    btnRemove.innerText = "remove";
+    li.appendChild(btnRemove);
+
+    // ✅ Tick event
+    btnTick.addEventListener('click', function(){
+        spanE.classList.toggle("Completed");
+    });
+
+    // ✅ Remove event
+    btnRemove.addEventListener("click", function(){
+        li.remove();
+    });
+
+    // Clear input after adding
+    inputText[0].value = "";
+});
 
 
-let btnTick = document.createElement('button');
-btnTick.innerText = "✔";
-li.appendChild(btnTick);
+// 3️⃣ Filter tasks
 
-let btnRemove = document.createElement('button');
-btnRemove.innerText = "remove";
-li.appendChild(btnRemove);
+for (let i = 0; i < filterB.length; i++) {
+    filterB[i].addEventListener("click", function(e){
+        let filerC = e.target.dataset.filter;
+        console.log(filerC);
 
-btnTick.addEventListener('click',function(e){
-    spanE.classList.toggle("completed");
-    console.log(spanE);
-})
-btnRemove.addEventListener("click",function(){
-    li.remove();
-})
+        let items = taskList.querySelectorAll("li");
+
+        for (let i = 0; i < items.length; i++) {
+            let liEl = items[i];
+            let span = liEl.querySelector('span');
+
+            if (filerC === "all") {
+                liEl.style.display = "flex";
+            } 
+            else if (filerC === "active") {
+                liEl.style.display = !span.classList.contains("Completed") ? "flex" : "none";
+            } 
+            else if (filerC === "Completed") {
+                liEl.style.display = span.classList.contains("Completed") ? "flex" : "none";
+            }
+        }
+    });
 }
-)
 
+
+// 4️⃣ Clear completed tasks
+
+btnCc.addEventListener("click", function(){
+    let items = taskList.querySelectorAll("li");
+
+    for (let i = 0; i < items.length; i++) {
+        let span = items[i].querySelector('span');
+        if (span.classList.contains("Completed")) {
+            items[i].remove();
+        }
+    }
+});
