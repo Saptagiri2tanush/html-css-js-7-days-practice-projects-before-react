@@ -95,7 +95,37 @@ function filterProducts(){
         filtered = filtered.filter(p =>
             p.category === category
         );}
+        //console.log(filtered);
     
+    const price = priceElement.value;
+   // console.log(price);
+
+       if(price !== "all"){
+       if(price === "low"){
+       filtered = filtered.filter(p =>
+           p.price < 30
+       );
+       }
+      else if(price === "mid"){
+        filtered = filtered.filter(p => 
+            p.price >= 30 && p.price <= 60
+        );
+       }
+     else{
+        filtered = filtered.filter(p => 
+            p.price > 60
+        );
+     }
+    }
+     const sort = sortElement.value;
+     if(sort !== "default"){
+        if(sort === "low-high"){filtered.sort((a,b) => a.price - b.price);}
+        else{ filtered .sort((a,b) => b.price - a.price);}
+     }
+    console.log(filtered);
+    
+   
+       
 
     productDisplay(filtered);
 }
@@ -103,6 +133,8 @@ function filterProducts(){
 
 inputElement.addEventListener("input", filterProducts);
 categoryElement.addEventListener("change", filterProducts);
+priceElement.addEventListener("change", filterProducts);
+sortElement.addEventListener("change", filterProducts);
 
 productDisplay(products);
 </script>
