@@ -64,6 +64,7 @@ let categoryElement = document.getElementById("category-filter");
 let priceElement = document.getElementById("price-filter");
 let sortElement = document.getElementById("sort");
 let totalElement = document.getElementById("total-price");
+let cartElement = document.getElementById("cart-items");
 
 console.log(totalElement);
 let cart = [];
@@ -83,12 +84,22 @@ function addToCart(productId){
    console.log(productId);
    let product;
    for(let i = 0; i < products.length; i ++){
-    if(product.id === productId){
-       product = product[i];
+    if(products[i].id === productId){
+       product = products[i];
+       break;
     }
    }
    cart.push(product);
    console.log(cart);
+   updateCart();
+}
+
+function updateCart(){
+cartElement.innerHTML = cart.map(p => `
+                    <li>${p.name}:$${p.price}</li>`
+).join("");
+const total = cart.reduce((sum,p) => sum + p.price,0);
+totalElement.innerText = total;
 }
 
 function filterProducts(){
