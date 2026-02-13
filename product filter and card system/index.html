@@ -63,7 +63,10 @@ let inputElement = document.getElementById("search");
 let categoryElement = document.getElementById("category-filter");
 let priceElement = document.getElementById("price-filter");
 let sortElement = document.getElementById("sort");
+let totalElement = document.getElementById("total-price");
 
+console.log(totalElement);
+let cart = [];
 
 function productDisplay(list) {
     productContainer.innerHTML = list.map(p => `
@@ -76,6 +79,17 @@ function productDisplay(list) {
     `).join("");
 }
 
+function addToCart(productId){
+   console.log(productId);
+   let product;
+   for(let i = 0; i < products.length; i ++){
+    if(product.id === productId){
+       product = product[i];
+    }
+   }
+   cart.push(product);
+   console.log(cart);
+}
 
 function filterProducts(){
 
@@ -122,7 +136,7 @@ function filterProducts(){
         if(sort === "low-high"){filtered.sort((a,b) => a.price - b.price);}
         else{ filtered .sort((a,b) => b.price - a.price);}
      }
-    console.log(filtered);
+    //console.log(filtered);
     
    
        
