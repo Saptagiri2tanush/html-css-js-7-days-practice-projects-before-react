@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User profile dashboard</title>
+    <style>
+        *{
+            margin : 0;
+            padding : 0;
+            box-sizing: border-box;
+        }
+        body{
+            margin : 20px;
+            display : flex;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .profileContainer{
+            width : 800px;
+            height : 600px;
+            background-color: #fff;
+            border-radius: 12px;
+            padding : 20px;
+            box-shadow: 0 4px 10px;
+        }
+        .profileContainer h2{
+            text-align: center;
+        }
+        label{
+            margin-bottom: 5px;
+        }
+        input[type="text"]{
+            width :100%;
+        }
+
+    </style>
 </head>
+
 <body>
     <div class="profileContainer">
         <h2>User Profile Dashboard</h2>
@@ -16,27 +48,46 @@
         <div class ="editInfo">
             <h3>Edit Profile</h3>
             <form id = "editProfile">
-                <div>
+                
                     <label for = "name">Name</label>
                     <input type = "text" id ="name" autocomplete="name">
-                </div>
+                
                 <div>
                     <label for = "email">Email</label>
                     <input type= "email" id = "email" autocomplete="email">
                 </div>
                 <div>
                     <label for = "city">City</label>
-                    <input type = "text" id = "city" autocomplete="city">
+                    <input type = "text" id = "city">
                 </div>
                 <div>
                     <label for = "twitter">Twitter</label>
                     <input type= "text" id = "twitter" autocomplete="twitter">
                 </div>
-
+                <div>
+                <label  for = "themeLight">Theme</label>
+                 <select id = themeLight>
+                    <option value = "light">Light</option>
+                    <option value = "dark">Dark</option>
+                 </select>
+                </div>
+                <div>
+                <label for="notification" >Notification</label>
+                <select id="notification">
+                    <option value = "yes">Yes</option>
+                    <option value = "no">No</option>
+                </select>
+                </div>
+                <div><button type="submit">Update Profile</button></div>
             </form>
         </div>
+               <div class="settings">
+                <h3>Settings Panel</h3>
+                <div class="settingsPanel" id = "settingsPanel">
 
-
+                </div>
+               </div>
+           
     </div>
 </body>
 </html>
